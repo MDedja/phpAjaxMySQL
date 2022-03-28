@@ -31,10 +31,10 @@ if(isset($_POST['action']) && $_POST['action'] == "view"){
                 <td>'.$row['email'].'</td>
                 <td>'.$row['car'].'</td>
                 <td>
-                <a href="#" title="Details" class="text-success"><i class="fas fa-info-circle fa-lg infoBtn"
-                id="'.$row['id'].'"></i></a>&nbsp;&nbsp;
+                <a href="#" title="Details" class="text-success infoBtn" id="'.$row['id'].'"><i class="fas fa-info-circle fa-lg "
+                ></i></a>&nbsp;&nbsp;
 
-                <a href="#" title="Edit" class="text-primary"><i class="fas fa-edit fa-lg editBtn" data-toggle="modal" 
+                <a href="#" title="Edit" class="text-primary" ><i class="fas fa-edit fa-lg editBtn" data-toggle="modal" 
                 data-target="#editModal" id="'.$row['id'].'"></i></a>&nbsp;&nbsp;
 
                 <a href="#" title="Delete" class="text-danger delBtn" id="'.$row['id'].'"><i class="fas fa-trash fa-lg"></i></a>
@@ -92,6 +92,14 @@ if(isset($_POST['del_id'])){
     $id = $_POST['del_id'];
 
     $db->delete($id);
+
+}
+
+if(isset($_POST['info_id'])){
+    $id = $_POST['info_id'];
+    $row = $db->getUserDetails($id);
+
+    echo json_encode($row);
 
 }
 

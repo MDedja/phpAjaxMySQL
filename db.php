@@ -52,6 +52,18 @@ class Database{
 
         return $result;
     }
+
+    public function getUserDetails($id){
+        $sql="SELECT u.first_name,u.last_name,u.email,c.brand FROM users u INNER JOIN cars c ON u.car = c.car WHERE id= :id";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute(['id'=>$id]);
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+
+        return $result;
+    }
     
 
     public function update($id,$fname,$lname,$email,$car){
